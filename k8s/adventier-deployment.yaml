@@ -1,0 +1,88 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ekko-BRANCHNAME
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ekko-BRANCHNAME-fun
+  namespace: ekko-BRANCHNAME
+  annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+spec:
+  rules:
+    - host: www.BRANCHNAME.ekko.klucsik.fun
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: ekko-svc
+                port:
+                  number: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ekko
+  namespace: ekko-BRANCHNAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      type: app
+      service: ekko
+  template:
+    metadata:
+      labels:
+        type: app
+        service: ekko
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: "amd64"
+      containers:
+        - name: backend
+          image: IMAGETAG
+          imagePullPolicy: Always
+          env:
+            - name: REDEPLOY_FLAG
+              value: "BE_JENKINS_WILL_CHANGE_THIS_WHEN_REDEPLOY_NEEDED_BASED_ON_CHANGE"
+          startupProbe:
+            httpGet:
+              path: /
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 5
+            failureThreshold: 10
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: ekko-svc
+  namespace: ekko-BRANCHNAME
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    type: app
+    service: ekko
+
+---
