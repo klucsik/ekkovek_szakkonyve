@@ -51,14 +51,14 @@ pipeline {
                                   returnStdout:true
                                   ).trim()}"""
       IMAGEREPO = 'registry.klucsik.fun'
-      DISCORD_URL = credentials('discord-url')
+      DISCORD_URL = credentials('DISCORD_URL')
         }
   post {
 
 
       failure {
         container(name: 'kubectl') {
-            sh '''curl --location --request POST $DISCORD_URL        --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must exspress my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
+            sh '''curl --location --request POST $DISCORD_URL        --header \'Content-Type: application/json\'         --data-raw \'{"content": "  ->  I am must express my deep regret, that the pipeline on the branch ** \'${BRANCH_NAME_LC}\'** had failed. Please check on my logs on what went wrong! "}\''''
         }
       }
 
