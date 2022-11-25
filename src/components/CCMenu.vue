@@ -105,14 +105,6 @@ export default {
   28% {
     transform: scale(1);
   }
-
-  42% {
-    transform: scale(1.3);
-  }
-
-  70% {
-    transform: scale(1);
-  }
 }
 
 @font-face {

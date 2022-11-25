@@ -35,9 +35,9 @@
           </div>
         </div>
         <div id="main">
-          <div id="title"><h1></h1></div>
+          <div id="title"><h1><!--Big title with special fonts-->></h1></div>
           <div id="text-box">
-            
+            <!-- The main text, copy-d from the source document, has to be formated -->
           </div>
         </div>
       </div>
@@ -76,14 +76,6 @@
     }
   
     28% {
-      transform: scale(1);
-    }
-  
-    42% {
-      transform: scale(1.3);
-    }
-  
-    70% {
       transform: scale(1);
     }
   }
