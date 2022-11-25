@@ -6,8 +6,14 @@
       <button @click="setSomeState">Set someState</button> -->
       <div id="header">
         <!-- All the pictures here -->
-        <div>
+        <div id="tabs">
           <!-- Tabs here -->
+          <div class="Tab" @click="this.$router.push('/')">
+            <h5 class="TabTitle">Home</h5>
+          </div>
+          <div class="Tab" @click="this.$router.push('/')">
+            <h5 class="TabTitle">Home</h5>
+          </div>
         </div>
       </div>
       <div id="main">
@@ -41,8 +47,54 @@ export default {
 </script>
 
 <style>
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+
+  14% {
+    transform: scale(1.3);
+  }
+
+  28% {
+    transform: scale(1);
+  }
+
+  42% {
+    transform: scale(1.3);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
+
+
+#parent {
+  width: 100%;
+  height: 100%;
+}
 #header {
-  
+  width: 100%;
+  height: 335px;
+}
+#tabs {
+  padding-top: 300px;
+}
+.Tab {
+  display: inline-block;
+  margin-left: 5px;
+  width: 150px;
+  border-color: black;
+  border-width: 1px;
+  border-bottom: 0px;
+  border-style: solid;
+  text-align: center;
+}
+.TabTitle:hover {
+  animation-name: heartBeat;
+  animation-duration: 1s;
 }
 
 </style>
