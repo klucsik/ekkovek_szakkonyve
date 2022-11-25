@@ -17,8 +17,7 @@
         </div>
       </div>
       <div id="main">
-        <div id="title">
-        </div>
+        <div id="title"><h1>Bevezetés</h1></div>
         <div id="text-box">
         </div>
       </div>
@@ -69,7 +68,10 @@ export default {
     transform: scale(1);
   }
 }
-
+@font-face {
+  font-family: Navarone;
+  src: url(../../Fonts/Navarone-Regular.woff);
+}
 
 #parent {
   width: 100%;
@@ -95,6 +97,10 @@ export default {
 .TabTitle:hover {
   animation-name: heartBeat;
   animation-duration: 1s;
+}
+#title {
+  text-align: center;
+  font-family: Navarone;
 }
 
 </style>
