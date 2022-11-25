@@ -33,7 +33,7 @@ pipeline {
         sh 'cat k8s/deployment.yaml'
         container(name: 'kubectl') {
         sh 'kubectl apply -f k8s/deployment.yaml'
-        sh 'kubectl rollout status deployment/adventier --namespace=adventier-${BRANCH_NAME_LC}' 
+        sh 'kubectl rollout status deployment/ekko --namespace=ekko-${BRANCH_NAME_LC}' 
 
         sh '''curl --location --request POST $DISCORD_URL         --header \'Content-Type: application/json\'         --data-raw \'{"content": "I am pleased to report that I am deployed the branch:** \'${BRANCH_NAME_LC}\'** and its available for you at: http://\'${BRANCH_NAME_LC}\'.ekko.klucsik.fun "}\'
         '''
@@ -49,7 +49,7 @@ pipeline {
                                    ).trim()}"""
     IMAGETAG = """${sh(
                                   script:
-                                    "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo adventier_$BRANCH_NAME_LC:latest",
+                                    "BRANCH_NAME_LC=\$(echo $BRANCH_NAME | sed -e 'y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/') echo ekko_$BRANCH_NAME_LC:latest",
                                   returnStdout:true
                                   ).trim()}"""
       IMAGEREPO = 'registry.klucsik.fun'
