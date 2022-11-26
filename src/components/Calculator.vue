@@ -35,7 +35,7 @@
           </div>
         </div>
         <div id="main">
-          <div id="title"><h1><!--Big title with special fonts--></h1></div>
+          <div id="title"><h1>Kalkulátor</h1></div>
           <div id="text-box">
             <!-- The main text, copy-d from the source document, has to be formated -->
           </div>

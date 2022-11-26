@@ -11,7 +11,7 @@
             <div class="Tab" @click="this.$router.push('/')">
               <h5 class="TabTitle">Home</h5>
             </div>
-            <div class="Tab" @click="this.$router.push('/')">
+            <div class="Tab" @click="this.$router.push('/calculator')">
               <h5 class="TabTitle">Kalkulátor</h5>
             </div>
             <div class="Tab" @click="this.$router.push('/class')">
@@ -43,7 +43,6 @@
             <div>Az alábbi értékek 1 db standard 2 karátos, szabályosan csiszolt ékkőre vonatkoznak:</div>
             <div style="padding-left: 24px">1. <b>osztály (ritka drágakövek, 5000 arany):</b> gyémánt, jácint</div>
             <div style="padding-left: 24px">2. <b>osztály (gyakori drágakövek, 1000 arany):</b> orund, opál, rubin, smaragd, zafír</div>
-            <!-- <div style="padding-left: 24px">1. <b></b> </div> -->
             <div style="padding-left: 24px">3. <b>osztály (ritka féldrágakövek, 500 arany):</b> alexandrit, akvamarin, topáz, kék spinell, krizolit, fekete gyöngy</div>
             <div style="padding-left: 24px">4. <b>osztály (gyakori féldrágakövek, 100 arany):</b> ametiszt, borostyán, gránát, igazgyöngy, jáde, nemeskorall, spinell, turmalin</div>
             <div style="padding-left: 24px">5. <b>osztály (ritka ékkövek, 50 arany):</b> cirkon, citrin, füstös kvarc, hegyikristály, heliotróp, holdkő, iolit, jáspis, karneol, krizopráz, ónix, rózsakvarc, szárdónix</div>

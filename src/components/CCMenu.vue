@@ -11,7 +11,7 @@
           <div class="Tab" @click="this.$router.push('/')">
             <h5 class="TabTitle">Home</h5>
           </div>
-          <div class="Tab" @click="this.$router.push('/')">
+          <div class="Tab" @click="this.$router.push('/calculator')">
             <h5 class="TabTitle">Kalkulátor</h5>
           </div>
           <div class="Tab" @click="this.$router.push('/class')">
