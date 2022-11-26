@@ -12,7 +12,7 @@
               <h5 class="TabTitle">Home</h5>
             </div>
             <div class="Tab" @click="this.$router.push('/')">
-              <h5 class="TabTitle">Calculator</h5>
+              <h5 class="TabTitle">Kalkulátor</h5>
             </div>
             <div class="Tab" @click="this.$router.push('/')">
               <h5 class="TabTitle">Osztályozás</h5>
@@ -24,7 +24,7 @@
               <h5 class="TabTitle">Keménység</h5>
             </div>
             <div class="Tab" @click="this.$router.push('/')">
-              <h5 class="TabTitle">Színek és átlátszóság</h5>
+              <h5 class="TabTitle">Színek</h5>
             </div>
             <div class="Tab" @click="this.$router.push('/')">
               <h5 class="TabTitle">Csiszolás</h5>
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div id="main">
-          <div id="title"><h1><!--Big title with special fonts-->></h1></div>
+          <div id="title"><h1><!--Big title with special fonts--></h1></div>
           <div id="text-box">
             <!-- The main text, copy-d from the source document, has to be formated -->
           </div>
@@ -113,31 +113,16 @@
     text-align: center;
     font-family: Navarone;
   }
-  #subtitle {
-    padding-top: 10px;
-    text-align: left;
-    font-family: Navarone;
-    font-style: normal;
-  }
   #text-box {
     padding-top: 10px;
     margin-right: 10px;
     margin-left: 10px;
     text-align: left;
     font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
+    font-style: normal;
     font-size: larger;
     font-weight: 400;
   }
-  #realAuthors {
-    margin: 30%;
-    margin-top: 25px;
-    text-align: center;
-    border: 1px;
-    border-style: solid;
-    background-color: lightgray;
-  }
-  
   </style>
   
   
