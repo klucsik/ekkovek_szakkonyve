@@ -14,7 +14,7 @@
           <div class="Tab" @click="this.$router.push('/')">
             <h5 class="TabTitle">Kalkulátor</h5>
           </div>
-          <div class="Tab" @click="this.$router.push('/')">
+          <div class="Tab" @click="this.$router.push('/class')">
             <h5 class="TabTitle">Osztályozás</h5>
           </div>
           <div class="Tab" @click="this.$router.push('/')">
