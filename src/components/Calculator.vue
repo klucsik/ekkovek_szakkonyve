@@ -1,9 +1,8 @@
 <template>
     <div class="CCMenu">
       <div id="parent">
-        <!-- <h3 id="Title">Test: Ékkövek könyve</h3>
-        <div>{{getState}}</div>
-        <button @click="setSomeState">Set someState</button> -->
+        <!-- <h3 id="Title">Test: Ékkövek könyve</h3> -->
+        <!-- <button @click="setSomeState">Set someState</button> -->
         <div id="header">
           <!-- All the pictures here -->
           <div id="tabs">
@@ -37,7 +36,15 @@
         <div id="main">
           <div id="title"><h1>Kalkulátor</h1></div>
           <div id="text-box">
-            <!-- The main text, copy-d from the source document, has to be formated -->
+            A kalkulátor segitségével könnyen megnézheted hogy milyen ékköveket szeretnél!
+            <div>
+              <label for="class">Choose a class</label>
+              <select name="class" id="class">
+                <option value="tiny">tiny</option>
+                <option value="small">smol</option>
+              </select>
+              <button id="button" type="submit" @click="submit">End</button>
+            </div>
           </div>
         </div>
       </div>
@@ -45,25 +52,30 @@
   </template>
   
   <script>
-  
   export default {
     name: 'CCMenu',
     components: {
-  
+
     },
     computed: {
-      // getState() {
-      //   return this.$store.getters.someState;
+      // getClass() {
+      //   return this.$store.getters.getClass('Jewel');
       // }
     },
     methods: {
       // setSomeState() {
       //   this.$store.commit('setSomeState', 1)
       // }
+      getClass(param) {
+        return this.$store.getters.getClass(param);
+      },
+      submit() {
+        
+      }
     }
   }
   </script>
-  
+
   <style>
   
   @keyframes heartBeat {

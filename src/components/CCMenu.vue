@@ -1,9 +1,8 @@
 <template>
   <div class="CCMenu">
     <div id="parent">
-      <!-- <h3 id="Title">Test: Ékkövek könyve</h3>
-      <div>{{getState}}</div>
-      <button @click="setSomeState">Set someState</button> -->
+      <!-- <h3 id="Title">Test: Ékkövek könyve</h3> -->
+      <!-- <button @click="setSomeState">Set someState</button> -->
       <div id="header">
         <!-- All the pictures here -->
         <div id="tabs">
@@ -80,9 +79,6 @@ export default {
 
   },
   computed: {
-    // getState() {
-    //   return this.$store.getters.someState;
-    // }
   },
   methods: {
     // setSomeState() {
