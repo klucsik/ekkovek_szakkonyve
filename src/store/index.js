@@ -10,6 +10,14 @@ const store = createStore({
         Giant: 970,
         Gigantic: 9700
       },
+      sizeHun: {
+        0.1: 'parányi',
+        1: 'kicsi',
+        10: 'közepes',
+        100: 'nagy',
+        970: 'óriás',
+        9700: 'kolosszális'
+      },
       class: { //Values mean the price in gp, for a small regular gem
         Jewel: 5000,
         True: 1000,
@@ -18,12 +26,27 @@ const store = createStore({
         SemiPrecious: 50,
         Ornamental: 10,
       },
-      grinding: { //values mean the multiplier of the price described in the class
-        amateurish: 0.2,
+      classHun: {
+        5000: '1. osztály',
+        1000: '2. osztály',
+        500: '3. osztály',
+        100: '4. osztály',
+        50: '5. osztály',
+        10: '6. osztály',
+      },
+      grinding: {
+        amateurish: 0.1,
         imperfect: 0.5,
         regular: 1,
         perfect: 2,
         masterpiece: 5
+      },
+      grindingHun: { //values mean the multiplier of the price described in the class
+        0.1: 'kontármunka',
+        0.5: 'tökéletlen munka',
+        1: 'szabályos munka',
+        2: 'kiváló munka',
+        5: 'mestermunka'
       },
       color: { //values mean the gems in a specified color
         red1: [],
@@ -114,6 +137,15 @@ const store = createStore({
     },
     getColor: (state) => (variable) => {
       return state.color[variable];
+    },
+    getClassHun: (state) => (variable) => {
+      return state.classHun[variable];
+    },
+    getSizeHun: (state) => (variable) => {
+      return state.sizeHun[variable];
+    },
+    getGrindingHun: (state) => (variable) => {
+      return state.grindingHun[variable];
     },
   }
 });

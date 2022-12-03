@@ -43,42 +43,60 @@
             <form>
               <label for="gp">Gold:</label>
               <input type="number" id="gp">
+              <button class="submitButton" type="button" @click="submitGold">Calclulate</button>
+            </form>
+            <div id="GPanswear">
+              <div class="answear-box" id="GPanswear-box">
+                <div>
+                  <span>1. osztályú gigantikus mestermunka - xxx GP <button type="button" @click="hideShow('JewelGiganticmasterpiece')">v</button></span>
+                  <div id="JewelGiganticmasterpiece" style="display: none;"> <!--id = class+size+grinding-->
+                    <ul>
+                      <li>Narancs: Jácint</li>
+                      <li>Kék: Gyémánt</li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <span>1. osztályú gigantikus tökéletes munka - xxx GP <button type="button" @click="hideShow('JewelGiganticperfect')">v</button></span>
+                  <div id="JewelGiganticperfect" style="display: none;">
+                    <ul>
+                      <li>Narancs: Jácint</li>
+                      <li>Kék: Gyémánt</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form>
               <label for="class">Choose a class</label>
               <select name="class" id="class">
-                <option value=""></option>
                 <option value="Jewel">1. osztály</option>
                 <option value="True">2. osztály</option>
+                <option value="Precios">3. osztály</option>
+                <option value="Fancy">4. osztály</option>
+                <option value="SemiPrecious">5. osztály</option>
+                <option value="Ornamental">6. osztály</option>
               </select>
               <label for="size">Choose a size</label>
               <select name="size" id="size">
-                <option value=""></option>
-                <option value="tiny">parányi</option>
-                <option value="small">kicsi</option>
+                <option value="tiny">Parányi (0.25 karát)</option>
+                <option value="small">Kicsi (2 karát)</option>
+                <option value="medium">Közepes (16 karát)</option>
+                <option value="Big">Nagy (128 karát)</option>
+                <option value="Giant">Óriás (1000 karát)</option>
+                <option value="Gigantic">Kolosszális (8000 karát)</option>
               </select>
               <label for="grinding">Choose a size</label>
               <select name="grinding" id="grinding">
-                <option value=""></option>
                 <option value="amateurish">Kontármunka</option>
+                <option value="imperfect">Tökéletlen munka</option>
+                <option value="regular">Szabályos munka</option>
+                <option value="perfect">Kiváló munka</option>
                 <option value="masterpiece">Mestermunka</option>
               </select>
-              <button id="button" @click="submit">End</button>
+              <button class="submitButton" type="button" @click="submitElse">Calculate</button>
             </form>
-          </div>
-          <div id="answear">
-            <div id="answear-box">
-              <ul>
-                <li>1. osztály
-                  <ul>
-                    <li> kicsi
-                      <ul>
-                        <li>
-                          kontármunka: xxx gp
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+            <div id="elseAnswear">
             </div>
           </div>
         </div>
@@ -112,31 +130,67 @@ export default {
     getGrinding(param) {
       return this.$store.getters.getGrinding(param);
     },
-    submit() {
-      if (document.getElementById("answear").hasChildNodes()) {
-        document.getElementById("answear-box").remove();
+    getClassHun(param) {
+      return this.$store.getters.getClassHun(param);
+    },
+    getSizeHun(param) {
+      return this.$store.getters.getSizeHun(param);
+    },
+    getGrindingHun(param) {
+      return this.$store.getters.getGrindingHun(param);
+    },
+    submitGold() {
+      if (document.getElementById("GPanswear").hasChildNodes()) {
+        document.getElementById("GPanswear-box").remove();
       }
       if (document.getElementById("gp").value == '' || document.getElementById("gp").value.isNaN) { //validation
         let element = document.createElement('div');
-        element.id = "answear-box";
+        element.id = "GPanswear-box";
+        element.className = "answear-box";
         element.innerHTML = 'Adjál meg pénzértéket'; //rephrase
-        document.getElementById("answear").appendChild(element);
+        document.getElementById("GPanswear").appendChild(element);
       } else {
         /*---------------------------------------------------------------------------------- Variables part ------------------------------------------------------------------------------------------------- */
         var gp = document.getElementById("gp").value;
-        var classValue = this.getClass(document.getElementById("class").value);
-        var sizeValue = this.getSize(document.getElementById("size").value);
-        var grindingValue = this.getGrinding(document.getElementById("grinding").value);
         let element = document.createElement('div');
-
         /*---------------------------------------------------------------------------------- Calculating part ----------------------------------------------------------------------------------------------- */
 
 
 
         /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
-        element.id = "answear-box";
-        element.innerHTML = gp + " " + classValue + " " + sizeValue + " " + grindingValue;
-        document.getElementById("answear").appendChild(element);
+        element.id = "GPanswear-box";
+        element.className = "answear-box";
+        element.innerHTML = gp;
+        document.getElementById("GPanswear").appendChild(element);
+      }
+    },
+    submitElse() {
+      if (document.getElementById("elseAnswear").hasChildNodes()) {
+        document.getElementById("elseAnswear-box").remove();
+      }
+        /*---------------------------------------------------------------------------------- Variables part ------------------------------------------------------------------------------------------------- */
+        var classValue = this.getClass(document.getElementById("class").value);
+        var sizeValue = this.getSize(document.getElementById("size").value);
+        var grindingValue = this.getGrinding(document.getElementById("grinding").value);
+        let element = document.createElement('div');
+        let cost = 0;
+
+        /*---------------------------------------------------------------------------------- Calculating part ----------------------------------------------------------------------------------------------- */
+
+        cost = classValue * sizeValue * grindingValue;
+
+        /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
+        element.id = "elseAnswear-box";
+        element.className = "answear-box";
+        element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' ' + this.getGrindingHun(grindingValue) + ' - ' + cost + ' GP' + '</div>';
+        document.getElementById("elseAnswear").appendChild(element);
+    },
+    hideShow(id) {
+      let element = document.getElementById(id);
+      if (element.style.display == "none") {
+        element.style.display = "block";
+      } else {
+        element.style.display = "none";
       }
     }
   }
@@ -209,14 +263,32 @@ export default {
   font-weight: 400;
 }
 
-#answear-box {
+.answear-box {
+  padding-left: 10px;
   margin: 30%;
   margin-top: 25px;
-  margin-bottom: 0px;
+  margin-bottom: 25px;
   text-align: left;
   border: 1px;
   border-style: solid;
   background-color: lightgray;
+}
+label {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.submitButton {
+  background-color: gray; /* Green */
+  border: none;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 12px;
 }
 </style>
   
