@@ -72,7 +72,7 @@
               <select name="class" id="class">
                 <option value="Jewel">1. osztály</option>
                 <option value="True">2. osztály</option>
-                <option value="Precios">3. osztály</option>
+                <option value="Precious">3. osztály</option>
                 <option value="Fancy">4. osztály</option>
                 <option value="SemiPrecious">5. osztály</option>
                 <option value="Ornamental">6. osztály</option>
