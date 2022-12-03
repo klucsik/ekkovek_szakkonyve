@@ -12,7 +12,7 @@ const store = createStore({
       },
       sizeHun: {
         0.1: 'parányi',
-        1: 'kicsi',
+        1: 'kiss',
         10: 'közepes',
         100: 'nagy',
         970: 'óriás',
@@ -42,11 +42,11 @@ const store = createStore({
         masterpiece: 5
       },
       grindingHun: { //values mean the multiplier of the price described in the class
-        0.1: 'kontármunka',
-        0.5: 'tökéletlen munka',
-        1: 'szabályos munka',
-        2: 'kiváló munka',
-        5: 'mestermunka'
+        0.1: 'kontárosan',
+        0.5: 'tökéletlenűl',
+        1: 'szabályosan',
+        2: 'kiválóan',
+        5: 'mesterien'
       },
       color: { //values mean the gems in a specified color
         red1: [],

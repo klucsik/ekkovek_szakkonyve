@@ -68,7 +68,7 @@
               </div>
             </div>
             <form>
-              <label for="class">Choose a class</label>
+              <label for="class">Válasz osztályt</label>
               <select name="class" id="class">
                 <option value="Jewel">1. osztály</option>
                 <option value="True">2. osztály</option>
@@ -77,7 +77,7 @@
                 <option value="SemiPrecious">5. osztály</option>
                 <option value="Ornamental">6. osztály</option>
               </select>
-              <label for="size">Choose a size</label>
+              <label for="size">Válasz méretet</label>
               <select name="size" id="size">
                 <option value="tiny">Parányi (0.25 karát)</option>
                 <option value="small">Kicsi (2 karát)</option>
@@ -86,7 +86,7 @@
                 <option value="Giant">Óriás (1000 karát)</option>
                 <option value="Gigantic">Kolosszális (8000 karát)</option>
               </select>
-              <label for="grinding">Choose a size</label>
+              <label for="grinding">Válasz csiszolást</label>
               <select name="grinding" id="grinding">
                 <option value="amateurish">Kontármunka</option>
                 <option value="imperfect">Tökéletlen munka</option>
@@ -182,7 +182,7 @@ export default {
         /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
         element.id = "elseAnswear-box";
         element.className = "answear-box";
-        element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' ' + this.getGrindingHun(grindingValue) + ' - ' + cost + ' GP' + '</div>';
+        element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' méretű ' + this.getGrindingHun(grindingValue) + ' megcsiszolva - ' + cost + ' GP' + '</div>';
         document.getElementById("elseAnswear").appendChild(element);
     },
     hideShow(id) {
