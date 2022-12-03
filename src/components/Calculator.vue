@@ -182,7 +182,7 @@ export default {
         /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
         element.id = "elseAnswear-box";
         element.className = "answear-box";
-        element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' méretű ' + this.getGrindingHun(grindingValue) + ' megcsiszolva - ' + cost + ' GP' + '</div>';
+        element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' méretű drágakő ' + this.getGrindingHun(grindingValue) + ' megcsiszolva - ' + cost + ' GP' + '</div>';
         document.getElementById("elseAnswear").appendChild(element);
     },
     hideShow(id) {
