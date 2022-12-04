@@ -1,6 +1,6 @@
 <template>
   <div class="CCMenu">
-    <div id="parent">
+    <div id="parent1">
       <!-- <h3 id="Title">Test: Ékkövek könyve</h3> -->
       <!-- <button @click="setSomeState">Set someState</button> -->
       <div id="header">
@@ -48,8 +48,9 @@
             <div id="GPanswear">
               <div class="answear-box" id="GPanswear-box">
                 <div>
-                  <span>1. osztályú gigantikus mestermunka - xxx GP <button type="button" @click="hideShow('JewelGiganticmasterpiece')">v</button></span>
-                  <div id="JewelGiganticmasterpiece" style="display: none;"> <!--id = class+size+grinding-->
+                  <label for="JewelGiganticPerfect">1. osztályú gigantikus perfect - xxx GP</label>
+                  <input class="CheckBox" id="JewelGiganticPerfect" type="checkbox" style="" />
+                  <div class="popup"> <!--id = class+size+grinding-->
                     <ul>
                       <li>Narancs: Jácint</li>
                       <li>Kék: Gyémánt</li>
@@ -57,8 +58,9 @@
                   </div>
                 </div>
                 <div>
-                  <span>1. osztályú gigantikus tökéletes munka - xxx GP <button type="button" @click="hideShow('JewelGiganticperfect')">v</button></span>
-                  <div id="JewelGiganticperfect" style="display: none;">
+                  <label for="JewelGiganticmesterpiece">1. osztályú gigantikus mestermunka - xxx GP</label>
+                  <input class="CheckBox" id="JewelGiganticmesterpiece" type="checkbox" style="" />
+                  <div class="popup"> <!--id = class+size+grinding-->
                     <ul>
                       <li>Narancs: Jácint</li>
                       <li>Kék: Gyémánt</li>
@@ -79,9 +81,9 @@
               </select>
               <label for="size">Válasz méretet</label>
               <select name="size" id="size">
-                <option value="tiny">Parányi (0.25 karát)</option>
-                <option value="small">Kicsi (2 karát)</option>
-                <option value="medium">Közepes (16 karát)</option>
+                <option value="Tiny">Parányi (0.25 karát)</option>
+                <option value="Small">Kicsi (2 karát)</option>
+                <option value="Medium">Közepes (16 karát)</option>
                 <option value="Big">Nagy (128 karát)</option>
                 <option value="Giant">Óriás (1000 karát)</option>
                 <option value="Gigantic">Kolosszális (8000 karát)</option>
@@ -102,10 +104,24 @@
         </div>
       </div>
     </div>
+
+    <!-- <div id="parent">
+      This is the main container.
+      <div id="popup">some text here</div>
+    </div> -->
   </div>
 </template>
   
 <script>
+// function hideShowfunction(id) {
+//   let element = document.getElementById(id);
+//   if (element.style.display == "none") {
+//     element.style.display = "block";
+//   } else {
+//     element.style.display = "none";
+//   }
+// }
+
 
 export default {
   name: 'CCMenu',
@@ -139,11 +155,14 @@ export default {
     getGrindingHun(param) {
       return this.$store.getters.getGrindingHun(param);
     },
+    getColor(param) {
+      return this.$store.getters.getColor(param);
+    },
     submitGold() {
       if (document.getElementById("GPanswear").hasChildNodes()) {
         document.getElementById("GPanswear-box").remove();
       }
-      if (document.getElementById("gp").value == '' || document.getElementById("gp").value.isNaN) { //validation
+      if (document.getElementById("gp").value == '' || document.getElementById("gp").value.isNaN || document.getElementById("gp").value < 0) { //validation
         let element = document.createElement('div');
         element.id = "GPanswear-box";
         element.className = "answear-box";
@@ -155,35 +174,78 @@ export default {
         let element = document.createElement('div');
         /*---------------------------------------------------------------------------------- Calculating part ----------------------------------------------------------------------------------------------- */
 
+        let classes = ["Jewel", "True", "Precious", "Fancy", "SemiPrecious", "Ornamental"];
+        let sizes = ["Gigantic", "Giant", "Big", "Medium", "Small", "Tiny"];
+        let grindings = ["masterpiece", "perfect", "regular", "imperfect", "amateurish"];
+        let payable = [];
 
+        classes.forEach(className => {
+          var classWorth = this.getClass(className);
+          sizes.forEach(sizeName => {
+            var sizeWorth = this.getSize(sizeName);
+            grindings.forEach(grindingName => {
+              var grindWorth = this.getGrinding(grindingName);
+              if (classWorth * sizeWorth * grindWorth <= gp) {
+                payable.push(className + "," + sizeName + "," + grindingName);
+              }
+            });
+          });
+        });
 
         /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
         element.id = "GPanswear-box";
         element.className = "answear-box";
-        element.innerHTML = gp;
+        let payableStrings = [];
+        payable.forEach(gem => {
+          var className = this.getClassHun(this.getClass(gem.split(",")[0]));
+          var sizeName = this.getSizeHun(this.getSize(gem.split(",")[1]));
+          var grindingName = this.getGrindingHun(this.getGrinding(gem.split(",")[2]));
+          var cost = this.getClass(gem.split(",")[0]) * this.getSize(gem.split(",")[1]) * this.getGrinding(gem.split(",")[2]);
+          let colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Black", "Gray", "White", "Colorless"];
+          let listItems = [];
+          colors.forEach(color => {
+            if (this.getColor(color + className.split(".")[0]).length != 0) {
+              listItems.push('<li>' + color + ': ' + this.getColor(color + className.split(".")[0]).join(', ') + '</li>');
+            } else {
+              return;
+            }
+          });
+          payableStrings.push(//hideShowfunction('${gem.split(",")[0] + gem.split(",")[1] + gem.split(",")[2]}')
+            `<div>
+              <label for="${gem.split(",")[0] + gem.split(",")[1] + gem.split(",")[2]}"> ${className}ú ${sizeName} méretű drágakő ${grindingName} megcsiszolva - ${cost} GP <span class="dropdownButton">v</span></label>
+              <input hidden class="CheckBox" id="${gem.split(",")[0] + gem.split(",")[1] + gem.split(",")[2]}" type="checkbox" />
+              <div class="popup">
+                <ul>
+                  ${listItems.join('')} 
+                </ul>
+              </div>
+            </div>`);
+        });
+        element.innerHTML = payableStrings.join("");
         document.getElementById("GPanswear").appendChild(element);
+        this.$forceUpdate();
       }
     },
     submitElse() {
       if (document.getElementById("elseAnswear").hasChildNodes()) {
         document.getElementById("elseAnswear-box").remove();
       }
-        /*---------------------------------------------------------------------------------- Variables part ------------------------------------------------------------------------------------------------- */
-        var classValue = this.getClass(document.getElementById("class").value);
-        var sizeValue = this.getSize(document.getElementById("size").value);
-        var grindingValue = this.getGrinding(document.getElementById("grinding").value);
-        let element = document.createElement('div');
-        let cost = 0;
+      /*---------------------------------------------------------------------------------- Variables part ------------------------------------------------------------------------------------------------- */
+      var classValue = this.getClass(document.getElementById("class").value);
+      var sizeValue = this.getSize(document.getElementById("size").value);
+      var grindingValue = this.getGrinding(document.getElementById("grinding").value);
+      let element = document.createElement('div');
+      let cost = 0;
 
-        /*---------------------------------------------------------------------------------- Calculating part ----------------------------------------------------------------------------------------------- */
+      /*---------------------------------------------------------------------------------- Calculating part ----------------------------------------------------------------------------------------------- */
 
-        cost = classValue * sizeValue * grindingValue;
+      cost = classValue * sizeValue * grindingValue;
 
-        /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
-        element.id = "elseAnswear-box";
-        element.className = "answear-box";
-        element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' méretű drágakő ' + this.getGrindingHun(grindingValue) + ' megcsiszolva - ' + cost + ' GP' + '</div>';
-        document.getElementById("elseAnswear").appendChild(element);
+      /*---------------------------------------------------------------------------------- Answear part --------------------------------------------------------------------------------------------------- */
+      element.id = "elseAnswear-box";
+      element.className = "answear-box";
+      element.innerHTML = '<div>' + this.getClassHun(classValue) + 'ú ' + this.getSizeHun(sizeValue) + ' méretű drágakő ' + this.getGrindingHun(grindingValue) + ' megcsiszolva - ' + cost + ' GP' + '</div>';
+      document.getElementById("elseAnswear").appendChild(element);
     },
     hideShow(id) {
       let element = document.getElementById(id);
@@ -273,12 +335,14 @@ export default {
   border-style: solid;
   background-color: lightgray;
 }
-label {
+
+/* label {
   padding-left: 10px;
   padding-right: 10px;
-}
+} */
+
 .submitButton {
-  background-color: gray; /* Green */
+  background-color: gray;
   border: none;
   color: black;
   padding: 10px;
@@ -289,6 +353,31 @@ label {
   margin: 10px;
   cursor: pointer;
   border-radius: 12px;
+}
+
+.dropdownButton {
+  background-color: gray;
+  border: none;
+  color: black;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.dropdownButton:hover {
+  background-color: lightslategray;
+}
+
+.popup {
+  display: none;
+}
+
+.CheckBox:checked+.popup {
+  display: block;
 }
 </style>
   
