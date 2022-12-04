@@ -46,28 +46,6 @@
               <button class="submitButton" type="button" @click="submitGold">Calclulate</button>
             </form>
             <div id="GPanswear">
-              <div class="answear-box" id="GPanswear-box">
-                <div>
-                  <label for="JewelGiganticPerfect">1. osztályú gigantikus perfect - xxx GP</label>
-                  <input class="CheckBox" id="JewelGiganticPerfect" type="checkbox" style="" />
-                  <div class="popup"> <!--id = class+size+grinding-->
-                    <ul>
-                      <li>Narancs: Jácint</li>
-                      <li>Kék: Gyémánt</li>
-                    </ul>
-                  </div>
-                </div>
-                <div>
-                  <label for="JewelGiganticmesterpiece">1. osztályú gigantikus mestermunka - xxx GP</label>
-                  <input class="CheckBox" id="JewelGiganticmesterpiece" type="checkbox" style="" />
-                  <div class="popup"> <!--id = class+size+grinding-->
-                    <ul>
-                      <li>Narancs: Jácint</li>
-                      <li>Kék: Gyémánt</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
             <form>
               <label for="class">Válasz osztályt</label>
